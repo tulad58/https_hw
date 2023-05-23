@@ -2,6 +2,7 @@ import requests
 from pprint import pprint
 
 
+
 class YaUploader:
     def __init__(self, token):
         self.token = token
@@ -43,6 +44,7 @@ class YaUploader:
 
 if __name__ == '__main__':
     path_to_file = 'file.txt'
+
     token = "y0_AgAAAAACQgvtAADLWwAAAADeux0_w1bvFpzaTNu8qus6x1PNTR4Z-QI"
     to = YaUploader(token)
     res = to.upload('file1.txt', path_to_file)

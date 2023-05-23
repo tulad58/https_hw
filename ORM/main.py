@@ -62,16 +62,14 @@ create_objects()
 session.commit()
 
 def get_buy_info(name):
-    subq = session.query(Publisher, Book, Stock,Sale).select_from(Publisher).join(Book).join(Stock).join(Sale).filter(Publisher.name==name).subquery()
-    q = session.query(Stock).join(subq, Shop.id == subq.c.id_publisher).all()
-    # res = session.query(q).join(b).filter(Publisher.name==name).all()
-    for publisher, book, stock, sale in q:
-        print(publisher, book.title, sale.price, sale.data_sale)
+    subq = session.query(Publisher, Book, Stock, Sale).select_from(Publisher) \
+        .join(Book).join(Stock).join(Sale).filter(Publisher.name==name).subquery("publisher")
+    q = session.query(Shop).join(subq, Shop.id == subq.c.id_shop).filter()
+    for el in q.all():
+        print(el)
 
+  
 get_buy_info("Penguin Random House")
 
-def klsajk():
-    subq = session.query(Homework).filter(Homework.description.like("%сложн%")).subquery("simple_hw")
-    q = session.query(Course).join(subq, Course.id == subq.c.course_id)
-
 session.close()
+# Не успел, можно еще времени на доработку?=)

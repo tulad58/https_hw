@@ -51,7 +51,7 @@ class Stock(Base):
     id = sq.Column(sq.Integer, primary_key=True)
     id_book = sq.Column(sq.Integer, sq.ForeignKey("book.id",ondelete="CASCADE"), nullable=False)
     id_shop = sq.Column(sq.Integer, sq.ForeignKey("shop.id",ondelete="CASCADE"), nullable=False)
-
+    count = sq.Column(sq.Integer)
     book = relationship(Book, cascade="all,delete", backref="book",passive_deletes=True)
     shop = relationship(Shop, cascade="all,delete", backref="shop",passive_deletes=True)
 
@@ -63,7 +63,7 @@ class Sale(Base):
 
     id = sq.Column(sq.Integer, primary_key=True)
     price = sq.Column(sq.Float, nullable=False)
-    data_sale = sq.Column(sq.Date)
+    date_sale = sq.Column(sq.Date)
     id_stock = sq.Column(sq.Integer, sq.ForeignKey("stock.id",ondelete="CASCADE"), nullable=False)
     count = sq.Column(sq.Integer)
 
